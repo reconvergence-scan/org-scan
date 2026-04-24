@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>組織環境診断</title>
+<title>環境診断MVP</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: sans-serif; font-size: 13px; background: #f9f9f7; color: #1a1a18; padding: 20px; max-width: 680px; margin: 0 auto; }
@@ -328,7 +328,25 @@ function calcResult() {
     </div>`;
   }).join('');
 
-  const forceText = `${top[0].force}および${top[1].force}が重なっているため、「${behavior}」以外の選択が非合理になっています。結果はこの状態に再収束し続けます。`;
+  const avgScore = scores.reduce((sum, a) => sum + a.score, 0) / scores.length;
+  const maxScore = Math.max(...scores.map(a => a.score));
+
+  let severity = '低';
+  let severityText = '大きな構造不全はまだ限定的です。ただし、一部の条件では特定の行動に流れやすくなっています。';
+
+  if (avgScore >= 0.65 || maxScore >= 0.9) {
+    severity = '高';
+    severityText = '構造不全が強く出ています。この環境では、個人の努力だけで流れを変えるのは難しい状態です。';
+  } else if (avgScore >= 0.35 || maxScore >= 0.6) {
+    severity = '中';
+    severityText = '一部の構造に偏りがあります。特定の場面では、同じ行動に戻りやすい状態です。';
+  }
+
+  const forceText =
+    `構造負荷：${severity}。\n` +
+    `${severityText}\n\n` +
+    `特に、${top[0].force}および${top[1].force}が重なっているため、` +
+    `「${behavior}」に再収束しやすくなっています。`;
 
   document.getElementById('sentence').textContent = forceText;
 
