@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>環境診断MVP</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; font-size: 13px; background: #f9f9f7; color: #1a1a18; padding: 20px; max-width: 680px; margin: 0 auto; }
+h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.sub { font-size: 12px; color: #666; margin-bottom: 20px; }
+.axis { margin-bottom: 16px; border-radius: 8px; overflow: hidden; border: 0.5px solid #ddd; }
+.axis-head { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
+.axis-label { font-size: 13px; font-weight: 500; }
+.force { font-size: 11px; opacity: 0.85; }
+.q-block { padding: 10px 14px; border-top: 0.5px solid #eee; background: #fff; }
+.q-num { font-size: 11px; color: #888; margin-bottom: 3px; }
+.q-text { font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
+.scale { display: flex; gap: 4px; }
+.scale label { flex: 1; text-align: center; font-size: 10px; color: #888; cursor: pointer; }
+.scale input[type=radio] { display: block; margin: 0 auto 2px; cursor: pointer; accent-color: #378ADD; }
+.s1 .axis-head { background: #E6F1FB; color: #0C447C; }
+.s2 .axis-head { background: #EAF3DE; color: #27500A; }
+.s3 .axis-head { background: #EEEDFE; color: #3C3489; }
+.s4 .axis-head { background: #FAEEDA; color: #633806; }
+.s5 .axis-head { background: #FCEBEB; color: #791F1F; }
+.s6 .axis-head { background: #E1F5EE; color: #085041; }
+.d1 .axis-head { background: #FBEAF0; color: #72243E; }
+.d2 .axis-head { background: #F1EFE8; color: #444441; }
+.submit-btn { margin-top: 4px; padding: 10px 24px; background: #378ADD; color: #fff; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; font-weight: 500; }
+.submit-btn:hover { opacity: 0.85; }
+.result-box { margin-top: 24px; padding: 16px; border-radius: 8px; background: #fff; border: 0.5px solid #ddd; display: none; }
+.result-box.show { display: block; }
+.result-title { font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+.bar-wrap { margin-bottom: 16px; }
+.bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 11px; }
+.bar-label { width: 130px; color: #666; flex-shrink: 0; }
+.bar-track { flex: 1; height: 6px; background: #eee; border-radius: 3px; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s; }
+.result-sentence { font-size: 13px; line-height: 1.8; padding: 12px; background: #f9f9f7; border-radius: 6px; border-left: 3px solid #378ADD; }
+.intervention { margin-top: 14px; font-size: 12px; color: #444; }
+.intervention strong { font-weight: 500; display: block; margin-bottom: 4px; }
+.intervention ul { padding-left: 16px; }
+.intervention li { margin-bottom: 3px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h1>環境診断 MVP（16問）</h1>
+<p class="sub">この診断は「誰が悪いか」ではなく「なぜこの構造が機能しないか」を特定します。<br>事実ベースで答えてください。</p>
+
+<div class="axis s1">
+  <div class="axis-head">
+    <span class="axis-label">S1 意思決定構造</span>
+    <span class="force">強制力：決めてもコントロールできない構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q1</div>
+    <div class="q-text">現場の担当者が決定を下しても、上位承認で内容が変わることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q1" value="0">0<br>ない</label>
+      <label><input type="radio" name="q1" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q1" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q2</div>
+    <div class="q-text">誰が最終決定者かが、案件によって変わる</div>
+    <div class="scale">
+      <label><input type="radio" name="q2" value="0">0<br>ない</label>
+      <label><input type="radio" name="q2" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q2" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis s2">
+  <div class="axis-head">
+    <span class="axis-label">S2 目標×評価の接続性</span>
+    <span class="force">強制力：何をしても評価に繋がらない構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q3</div>
+    <div class="q-text">設定されたKPIと、実際の評価結果が一致していないと感じることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q3" value="0">0<br>ない</label>
+      <label><input type="radio" name="q3" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q3" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q4</div>
+    <div class="q-text">成果を出しても、評価に反映されないことがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q4" value="0">0<br>ない</label>
+      <label><input type="radio" name="q4" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q4" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis s3">
+  <div class="axis-head">
+    <span class="axis-label">S3 役割境界の確定度</span>
+    <span class="force">強制力：責任が後付けで決まる構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q5</div>
+    <div class="q-text">問題が起きたとき、誰の責任かが後から決まることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q5" value="0">0<br>ない</label>
+      <label><input type="radio" name="q5" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q5" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q6</div>
+    <div class="q-text">自分の業務範囲と他者の業務範囲が重複している場面がある</div>
+    <div class="scale">
+      <label><input type="radio" name="q6" value="0">0<br>ない</label>
+      <label><input type="radio" name="q6" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q6" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis s4">
+  <div class="axis-head">
+    <span class="axis-label">S4 意思決定の可逆性</span>
+    <span class="force">強制力：今の判断が無効化される構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q7</div>
+    <div class="q-text">一度決まった方針が、短期間で覆ることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q7" value="0">0<br>ない</label>
+      <label><input type="radio" name="q7" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q7" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q8</div>
+    <div class="q-text">着手した作業が、方針変更によって無駄になることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q8" value="0">0<br>ない</label>
+      <label><input type="radio" name="q8" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q8" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis s5">
+  <div class="axis-head">
+    <span class="axis-label">S5 評価ロジックの再現性</span>
+    <span class="force">強制力：最適化不能な構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q9</div>
+    <div class="q-text">同じ行動をしても、評価者によって結果が変わることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q9" value="0">0<br>ない</label>
+      <label><input type="radio" name="q9" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q9" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q10</div>
+    <div class="q-text">何をすれば評価されるかを、事前に予測しにくい</div>
+    <div class="scale">
+      <label><input type="radio" name="q10" value="0">0<br>ない</label>
+      <label><input type="radio" name="q10" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q10" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis s6">
+  <div class="axis-head">
+    <span class="axis-label">S6 情報流通の対称性</span>
+    <span class="force">強制力：知らない状態で判断させられる構造</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q11</div>
+    <div class="q-text">判断に必要な情報が、一部の人にしか共有されていないことがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q11" value="0">0<br>ない</label>
+      <label><input type="radio" name="q11" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q11" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q12</div>
+    <div class="q-text">会議や報告で、初めて重要な情報を知ることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q12" value="0">0<br>ない</label>
+      <label><input type="radio" name="q12" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q12" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis d1">
+  <div class="axis-head">
+    <span class="axis-label">D1 時間圧力</span>
+    <span class="force">圧力：短期判断を強制する</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q13</div>
+    <div class="q-text">締切や納期が、十分な検討時間を確保できないほど短いことがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q13" value="0">0<br>ない</label>
+      <label><input type="radio" name="q13" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q13" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q14</div>
+    <div class="q-text">短期の数字が、中長期の判断より優先されることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q14" value="0">0<br>ない</label>
+      <label><input type="radio" name="q14" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q14" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<div class="axis d2">
+  <div class="axis-head">
+    <span class="axis-label">D2 損失分配</span>
+    <span class="force">圧力：意思決定者と損失負担者の乖離</span>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q15</div>
+    <div class="q-text">判断を下した人と、その結果を実際に負担する人が異なることがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q15" value="0">0<br>ない</label>
+      <label><input type="radio" name="q15" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q15" value="2">2<br>よくある</label>
+      </div>
+  </div>
+  <div class="q-block">
+    <div class="q-num">Q16</div>
+    <div class="q-text">失敗したとき、現場が損失を引き受け、決定者は影響を受けないことがある</div>
+    <div class="scale">
+      <label><input type="radio" name="q16" value="0">0<br>ない</label>
+      <label><input type="radio" name="q16" value="1">1<br>たまにある</label>
+      <label><input type="radio" name="q16" value="2">2<br>よくある</label>
+      </div>
+  </div>
+</div>
+
+<button class="submit-btn" onclick="calcResult()">診断する</button>
+
+<div class="result-box" id="result">
+  <div class="result-title">診断結果</div>
+  <div class="bar-wrap" id="bars"></div>
+  <div class="result-sentence" id="sentence"></div>
+  <div class="intervention" id="intervention"></div>
+</div>
+
+<script>
+const axes = [
+  { id:'s1', label:'S1 意思決定構造',   qs:['q1','q2'],   force:'決めてもコントロールできない構造',   action:'承認権限の明確化・決定者の固定' },
+  { id:'s2', label:'S2 目標×評価接続', qs:['q3','q4'],   force:'何をしても評価に繋がらない構造',     action:'KPIと評価の直結・評価基準の明文化' },
+  { id:'s3', label:'S3 役割境界',       qs:['q5','q6'],   force:'責任が後付けで決まる構造',           action:'役割境界の事前確定・責任の帰属ルール設計' },
+  { id:'s4', label:'S4 可逆性',         qs:['q7','q8'],   force:'今の判断が無効化される構造',         action:'変更プロセスの設計・可逆設計の導入' },
+  { id:'s5', label:'S5 評価再現性',     qs:['q9','q10'],  force:'最適化不能な構造',                   action:'評価ロジックの公開・一貫性の担保' },
+  { id:'s6', label:'S6 情報対称性',     qs:['q11','q12'], force:'知らない状態で判断させられる構造',   action:'情報公開ルールの設定・事前共有の徹底' },
+  { id:'d1', label:'D1 時間圧力',       qs:['q13','q14'], force:'短期判断を強制する圧力',             action:'締切設計の見直し・短期KPI比重の調整' },
+  { id:'d2', label:'D2 損失分配',       qs:['q15','q16'], force:'意思決定者と損失負担者の乖離',       action:'損失帰属を意思決定者に戻す設計' },
+];
+
+function getScore(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? parseInt(el.value) : 0;
+}
+
+function calcResult() {
+  const scores = axes.map(a => {
+    const raw = a.qs.reduce((s,q) => s + getScore(q), 0);
+    return { ...a, score: raw / 4 };
+  });
+
+  const top = [...scores].sort((a,b) => b.score - a.score).slice(0,2);
+
+  let behavior = '回避・様子見';
+  if (top.some(a => a.id==='s4'||a.id==='d1')) behavior = '先延ばし';
+  else if (top.some(a => a.id==='s3'||a.id==='d2')) behavior = '責任転嫁';
+  else if (top.some(a => a.id==='s2'||a.id==='s5')) behavior = '過剰投資（評価されない努力の継続）';
+  else if (top.some(a => a.id==='s6')) behavior = '情報隠蔽・報告減少';
+
+  const barsEl = document.getElementById('bars');
+  barsEl.innerHTML = scores.map(a => {
+    const pct = Math.round(a.score * 100);
+    const color = a.id.startsWith('d') ? '#D4537E' : '#378ADD';
+    return `<div class="bar-row">
+      <span class="bar-label">${a.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      <span style="font-size:11px;color:#888;width:32px;text-align:right">${pct}%</span>
+    </div>`;
+  }).join('');
+
+  const forceText = `${top[0].force}および${top[1].force}が重なっているため、「${behavior}」以外の選択が非合理になっています。結果はこの状態に再収束し続けます。`;
+
+  document.getElementById('sentence').textContent = forceText;
+
+  document.getElementById('intervention').innerHTML =
+    `<strong>介入ポイント（S/D への作用）</strong><ul>
+      <li>${top[0].label}：${top[0].action}</li>
+      <li>${top[1].label}：${top[1].action}</li>
+    </ul>`;
+
+  const box = document.getElementById('result');
+  box.classList.add('show');
+  box.scrollIntoView({ behavior:'smooth', block:'start' });
+
+  // ── GAS送信 ──────────────────────────────
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxJPrvaC5S0ZxxRcT-48tbw364L9BwR9hhD6Hkpm-wIaDvyCwUBUy1aTAi4zrL9lqrI/exec';
+
+  const scoreMap = {};
+  scores.forEach(a => { scoreMap[a.id] = Math.round(a.score * 100); });
+
+  const payload = {
+    q1:  getScore('q1'),  q2:  getScore('q2'),
+    q3:  getScore('q3'),  q4:  getScore('q4'),
+    q5:  getScore('q5'),  q6:  getScore('q6'),
+    q7:  getScore('q7'),  q8:  getScore('q8'),
+    q9:  getScore('q9'),  q10: getScore('q10'),
+    q11: getScore('q11'), q12: getScore('q12'),
+    q13: getScore('q13'), q14: getScore('q14'),
+    q15: getScore('q15'), q16: getScore('q16'),
+    s1: scoreMap.s1, s2: scoreMap.s2, s3: scoreMap.s3,
+    s4: scoreMap.s4, s5: scoreMap.s5, s6: scoreMap.s6,
+    d1: scoreMap.d1, d2: scoreMap.d2,
+    outcome:   behavior,
+    forceText: forceText
+  };
+
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => console.warn('送信エラー:', err));
+}
+</script>
+</body>
+</html>
