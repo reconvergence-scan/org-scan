@@ -8,11 +8,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: sans-serif; font-size: 13px; background: #f9f9f7; color: #1a1a18; padding: 20px; max-width: 680px; margin: 0 auto; }
 h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.sub-label { font-size: 10px; letter-spacing: 0.1em; color: #888; margin-bottom: 4px; }
 .sub { font-size: 12px; color: #666; margin-bottom: 20px; }
 .axis { margin-bottom: 16px; border-radius: 8px; overflow: hidden; border: 0.5px solid #ddd; }
 .axis-head { padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
 .axis-label { font-size: 13px; font-weight: 500; }
-.force { font-size: 11px; opacity: 0.85; }
+.force { display: none; }
 .q-block { padding: 10px 14px; border-top: 0.5px solid #eee; background: #fff; }
 .q-num { font-size: 11px; color: #888; margin-bottom: 3px; }
 .q-text { font-size: 12px; line-height: 1.6; margin-bottom: 8px; }
@@ -34,7 +35,8 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 .result-header { background: #1a1a18; color: #fff; border-radius: 10px 10px 0 0; padding: 20px 20px 16px; }
 .result-header-label { font-size: 10px; letter-spacing: 0.1em; color: #aaa; margin-bottom: 6px; }
 .result-header-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-.result-header-date { font-size: 11px; color: #888; }
+.result-header-date { font-size: 11px; color: #888; margin-bottom: 10px; }
+.result-header-note { font-size: 11px; color: #bbb; line-height: 1.7; border-top: 0.5px solid #333; padding-top: 10px; margin-top: 4px; }
 .result-body { background: #fff; border: 0.5px solid #ddd; border-top: none; border-radius: 0 0 10px 10px; padding: 20px; }
 .bar-section-title { font-size: 11px; color: #888; letter-spacing: 0.05em; margin-bottom: 10px; }
 .bar-wrap { margin-bottom: 20px; }
@@ -66,8 +68,9 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 </head>
 <body>
 
-<h1>職場構造スキャン</h1>
-<p class="sub">この診断は「誰が悪いか」ではなく「なぜこの構造が機能しないか」を特定します。<br>事実ベースで答えてください。</p>
+<p class="sub-label">STRUCTURE SCAN</p>
+<h1>職場でのあなたの感じ方を観測します</h1>
+<p class="sub">この診断は「誰が悪いか」ではなく「なぜこの構造が機能しないか」を特定します。事実ベースで答えてください。</p>
 
 <div class="axis s1">
   <div class="axis-head"><span class="axis-label">S1 意思決定構造</span><span class="force">強制力：決めてもコントロールできない構造</span></div>
@@ -249,9 +252,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 
 <div class="result-box" id="result">
   <div class="result-header">
-    <div class="result-header-label">STRUCTURE SCAN</div>
-    <div class="result-header-title">この職場で起きている構造</div>
+    <div class="result-header-label">STRUCTURE SCAN　診断結果</div>
+    <div class="result-header-title">あなたの感じ方の傾向</div>
     <div class="result-header-date" id="report-date"></div>
+    <div class="result-header-note">この結果はあなたの回答から見える「傾向」です。同じ職場で複数人の結果を集計して、はじめて構造として判断されます。</div>
   </div>
   <div class="result-body">
     <div id="severity-badge" style="display:none"></div>
@@ -269,14 +273,14 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 
 <script>
 const axes = [
-  { id:'s1', label:'S1 意思決定構造',   qs:['q1','q2'],   force:'誰の判断に従えばいいかわからない力場',   action:'承認権限の明確化・決定者の固定' },
-  { id:'s2', label:'S2 目標×評価接続', qs:['q3','q4'],   force:'何を頑張っても評価が読めない力場',     action:'KPIと評価の直結・評価基準の明文化' },
-  { id:'s3', label:'S3 役割境界',       qs:['q5','q6'],   force:'動くほど責任を負わされる力場',           action:'役割境界の事前確定・責任の帰属ルール設計' },
-  { id:'s4', label:'S4 可逆性',         qs:['q7','q8'],   force:'決めても無駄になるかもしれない力場',         action:'変更プロセスの設計・可逆設計の導入' },
-  { id:'s5', label:'S5 評価再現性',     qs:['q9','q10'],  force:'最適な行動が存在しない力場',                   action:'評価ロジックの公開・一貫性の担保' },
-  { id:'s6', label:'S6 情報対称性',     qs:['q11','q12'], force:'知らないまま判断を求められる力場',   action:'情報公開ルールの設定・事前共有の徹底' },
-  { id:'d1', label:'D1 時間圧力',       qs:['q13','q14'], force:'考える前に動かされる力場',             action:'締切設計の見直し・短期KPI比重の調整' },
-  { id:'d2', label:'D2 損失分配',       qs:['q15','q16'], force:'決めた人ではなく、現場が損を引き受ける力場',       action:'損失帰属を意思決定者に戻す設計' },
+  { id:'s1', label:'S1 意思決定構造',   qs:['q1','q2'],   force:'誰の判断に従えばいいかわからない状態',   action:'承認権限の明確化・決定者の固定' },
+  { id:'s2', label:'S2 目標×評価接続', qs:['q3','q4'],   force:'何を頑張っても評価が読めない状態',     action:'KPIと評価の直結・評価基準の明文化' },
+  { id:'s3', label:'S3 役割境界',       qs:['q5','q6'],   force:'動くほど責任を負わされる状態',           action:'役割境界の事前確定・責任の帰属ルール設計' },
+  { id:'s4', label:'S4 可逆性',         qs:['q7','q8'],   force:'決めても無駄になるかもしれない状態',         action:'変更プロセスの設計・可逆設計の導入' },
+  { id:'s5', label:'S5 評価再現性',     qs:['q9','q10'],  force:'最適な行動が存在しない状態',                   action:'評価ロジックの公開・一貫性の担保' },
+  { id:'s6', label:'S6 情報対称性',     qs:['q11','q12'], force:'知らないまま判断を求められる状態',   action:'情報公開ルールの設定・事前共有の徹底' },
+  { id:'d1', label:'D1 時間圧力',       qs:['q13','q14'], force:'考える前に動かされる状態',             action:'締切設計の見直し・短期KPI比重の調整' },
+  { id:'d2', label:'D2 損失分配',       qs:['q15','q16'], force:'決めた人ではなく、現場が損を引き受ける状態',       action:'損失帰属を意思決定者に戻す設計' },
 ];
 
 const priorityRank = ['d2','s4','d1','s1','s3','s6','s5','s2'];
@@ -405,7 +409,7 @@ function calcResult() {
   const forceLine = top3.map(a => a.force).join('<br>');
   document.getElementById('force-block').innerHTML = `
     <div class="force-block">
-      <div class="force-block-label">この構造が生む力場</div>
+      <div class="force-block-label">この構造が生む状態</div>
       <div class="force-block-text">${forceLine}</div>
     </div>`;
 
