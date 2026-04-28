@@ -54,7 +54,8 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 .force-block-text { font-size: 12px; color: #2A3D6B; line-height: 1.8; }
 .behavior-block { background: #FFF8E6; border-radius: 8px; padding: 12px 14px; margin-bottom: 20px; }
 .behavior-label { font-size: 10px; color: #8A6200; letter-spacing: 0.05em; margin-bottom: 6px; }
-.behavior-text { font-size: 13px; font-weight: 600; color: #5A3F00; }
+.behavior-text { font-size: 13px; font-weight: 600; color: #5A3F00; margin-bottom: 8px; }
+.behavior-desc { font-size: 12px; color: #6A4F00; line-height: 1.7; font-family: serif; }
 .note-block { border-top: 0.5px solid #eee; padding-top: 16px; font-size: 12px; color: #777; line-height: 1.8; }
 .severity-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; margin-bottom: 14px; }
 .sev-S { background: #4A0000; color: #fff; }
@@ -70,7 +71,7 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 
 <p class="sub-label">STRUCTURE SCAN</p>
 <h1>職場でのあなたの感じ方を観測します</h1>
-<p class="sub">この診断は「誰が悪いか」ではなく「なぜうまくいかないのか」を観測するテストです。あなたが感じているまま答えてください。</p>
+<p class="sub">この診断は「誰が悪いか」ではなく「なぜこの職場が機能していないか」を特定します。事実ベースで答えてください。</p>
 
 <div class="axis s1">
   <div class="axis-head"><span class="axis-label">S1 意思決定構造</span><span class="force">強制力：決めてもコントロールできない構造</span></div>
@@ -79,8 +80,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">現場で決めたことが、上の承認を経て変わってしまうことがある</div>
     <div class="scale">
       <label><input type="radio" name="q1" value="0">0<br>ない</label>
-      <label><input type="radio" name="q1" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q1" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q1" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q1" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q1" value="70">70<br>ある</label>
+      <label><input type="radio" name="q1" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -88,8 +91,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">誰が最終的に決める人なのか、業務ごとに違うと感じることがある</div>
     <div class="scale">
       <label><input type="radio" name="q2" value="0">0<br>ない</label>
-      <label><input type="radio" name="q2" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q2" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q2" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q2" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q2" value="70">70<br>ある</label>
+      <label><input type="radio" name="q2" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -101,8 +106,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">目標として求められていることと、実際に評価されることがズレていると感じることがある</div>
     <div class="scale">
       <label><input type="radio" name="q3" value="0">0<br>ない</label>
-      <label><input type="radio" name="q3" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q3" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q3" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q3" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q3" value="70">70<br>ある</label>
+      <label><input type="radio" name="q3" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -110,8 +117,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">成果を出しても、それが評価に結びつかないことがある</div>
     <div class="scale">
       <label><input type="radio" name="q4" value="0">0<br>ない</label>
-      <label><input type="radio" name="q4" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q4" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q4" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q4" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q4" value="70">70<br>ある</label>
+      <label><input type="radio" name="q4" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -123,8 +132,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">何か問題が起きたとき、誰の責任かが後になって決まることがある</div>
     <div class="scale">
       <label><input type="radio" name="q5" value="0">0<br>ない</label>
-      <label><input type="radio" name="q5" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q5" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q5" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q5" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q5" value="70">70<br>ある</label>
+      <label><input type="radio" name="q5" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -132,8 +143,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">自分の仕事と他の人の仕事の境目が、あいまいだと感じることがある</div>
     <div class="scale">
       <label><input type="radio" name="q6" value="0">0<br>ない</label>
-      <label><input type="radio" name="q6" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q6" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q6" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q6" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q6" value="70">70<br>ある</label>
+      <label><input type="radio" name="q6" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -145,8 +158,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">一度決まったはずの方針が、短い期間でひっくり返ることがある</div>
     <div class="scale">
       <label><input type="radio" name="q7" value="0">0<br>ない</label>
-      <label><input type="radio" name="q7" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q7" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q7" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q7" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q7" value="70">70<br>ある</label>
+      <label><input type="radio" name="q7" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -154,8 +169,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">取り掛かった仕事が、方針の変更によって無駄になることがある</div>
     <div class="scale">
       <label><input type="radio" name="q8" value="0">0<br>ない</label>
-      <label><input type="radio" name="q8" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q8" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q8" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q8" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q8" value="70">70<br>ある</label>
+      <label><input type="radio" name="q8" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -167,8 +184,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">同じ行動でも、評価する人によって判断が変わることがある</div>
     <div class="scale">
       <label><input type="radio" name="q9" value="0">0<br>ない</label>
-      <label><input type="radio" name="q9" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q9" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q9" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q9" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q9" value="70">70<br>ある</label>
+      <label><input type="radio" name="q9" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -176,8 +195,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">何をすれば評価されるのか、事前にわかりにくいと感じることがある</div>
     <div class="scale">
       <label><input type="radio" name="q10" value="0">0<br>ない</label>
-      <label><input type="radio" name="q10" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q10" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q10" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q10" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q10" value="70">70<br>ある</label>
+      <label><input type="radio" name="q10" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -189,8 +210,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">判断に必要な情報が、一部の人にしか共有されていないことがある</div>
     <div class="scale">
       <label><input type="radio" name="q11" value="0">0<br>ない</label>
-      <label><input type="radio" name="q11" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q11" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q11" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q11" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q11" value="70">70<br>ある</label>
+      <label><input type="radio" name="q11" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -198,8 +221,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">重要な情報が、動き出す前ではなく動いた後に知らされることがある</div>
     <div class="scale">
       <label><input type="radio" name="q12" value="0">0<br>ない</label>
-      <label><input type="radio" name="q12" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q12" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q12" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q12" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q12" value="70">70<br>ある</label>
+      <label><input type="radio" name="q12" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -211,8 +236,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">締切や納期が優先され、リスクや長期影響を検討する時間が削られることがある</div>
     <div class="scale">
       <label><input type="radio" name="q13" value="0">0<br>ない</label>
-      <label><input type="radio" name="q13" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q13" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q13" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q13" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q13" value="70">70<br>ある</label>
+      <label><input type="radio" name="q13" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -220,8 +247,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">目先の数字が優先されて、長期的な判断が後回しになることがある</div>
     <div class="scale">
       <label><input type="radio" name="q14" value="0">0<br>ない</label>
-      <label><input type="radio" name="q14" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q14" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q14" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q14" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q14" value="70">70<br>ある</label>
+      <label><input type="radio" name="q14" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -233,8 +262,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">方針を決めた人と、その結果を実際に引き受ける人が違うことがある</div>
     <div class="scale">
       <label><input type="radio" name="q15" value="0">0<br>ない</label>
-      <label><input type="radio" name="q15" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q15" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q15" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q15" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q15" value="70">70<br>ある</label>
+      <label><input type="radio" name="q15" value="100">100<br>かなりある</label>
     </div>
   </div>
   <div class="q-block">
@@ -242,8 +273,10 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
     <div class="q-text">うまくいかなかったとき、判断した人より現場の人が多く影響を受けることがある</div>
     <div class="scale">
       <label><input type="radio" name="q16" value="0">0<br>ない</label>
-      <label><input type="radio" name="q16" value="1">1<br>たまにある</label>
-      <label><input type="radio" name="q16" value="2">2<br>よくある</label>
+      <label><input type="radio" name="q16" value="10">10<br>たぶんない</label>
+      <label><input type="radio" name="q16" value="35">35<br>たぶんある</label>
+      <label><input type="radio" name="q16" value="70">70<br>ある</label>
+      <label><input type="radio" name="q16" value="100">100<br>かなりある</label>
     </div>
   </div>
 </div>
@@ -302,14 +335,23 @@ function getPriorityAxis(scores) {
 }
 
 const axisText = {
-  s1: { label: 'S1 意思決定構造',   desc: '誰が最終的に判断するのかが分かりにくい状態' },
-  s2: { label: 'S2 目標×評価接続', desc: '何を優先すれば評価につながるのかが見えにくい状態' },
-  s3: { label: 'S3 役割境界',       desc: 'どこまでが自分の責任なのかがあいまいな状態' },
-  s4: { label: 'S4 可逆性',         desc: '一度決めた進め方が途中で変わりやすい状態' },
-  s5: { label: 'S5 評価再現性',     desc: '同じ行動でも評価が変わりやすい状態' },
-  s6: { label: 'S6 情報対称性',     desc: '判断に必要な情報が十分にそろいにくい状態' },
-  d1: { label: 'D1 時間圧力',       desc: '短期的な判断が求められ、十分に検討する余裕が少ない状態' },
-  d2: { label: 'D2 損失分配',       desc: '判断した人と結果を引き受ける人が分かれやすい状態' }
+  s1: { label: 'S1 意思決定構造',   force: '誰の判断に従えばいいかわからない状態' },
+  s2: { label: 'S2 目標×評価接続', force: '何を頑張っても評価が読めない状態' },
+  s3: { label: 'S3 役割境界',       force: '動くほど責任を負わされる状態' },
+  s4: { label: 'S4 可逆性',         force: '決めても無駄になるかもしれない状態' },
+  s5: { label: 'S5 評価再現性',     force: '最適な行動が存在しない状態' },
+  s6: { label: 'S6 情報対称性',     force: '知らないまま判断を求められる状態' },
+  d1: { label: 'D1 時間圧力',       force: '考える前に動かざるを得ない状態' },
+  d2: { label: 'D2 損失分配',       force: '決めた人ではなく現場が損を引き受ける状態' }
+};
+
+const behaviorText = {
+  'その場対応（応急処置型）': '時間的な余裕がなく、評価の基準も見えにくい状態では、考え抜く前に動くことが合理的になります。結果として、根本解決より目先の対処が繰り返されやすくなっています。',
+  'その場対応（先延ばし型）': '決めても無駄になる可能性がある状態では、動き出すタイミングを遅らせることが合理的になります。結果として、着手が後回しになる判断に戻りやすくなっています。',
+  '責任回避': '動くほど責任を負わされ、損失も現場に集まりやすい状態では、関わらない方が合理的になります。結果として、確認してから動く・様子を見る判断に戻りやすくなっています。',
+  '過剰適応': '何をしても評価が読めず、最適な行動が見えにくい状態では、周囲に合わせることが合理的になります。結果として、自分の判断より相手の期待に応える行動に戻りやすくなっています。',
+  '短期判断': '時間圧力が強く、損失が自分に返りにくい状態では、長期的な影響より目先の結果を優先することが合理的になります。結果として、見切り発車の判断に戻りやすくなっています。',
+  '関係離脱': '情報が届かず、誰が決めるかも不明確な状態では、関わり続けることが非合理になります。結果として、距離を置く・関与を減らす判断に戻りやすくなっています。',
 };
 
 function generateResultText(top, behavior) {
@@ -340,28 +382,40 @@ function calcResult() {
 
   const scores = axes.map(a => {
     const raw = a.qs.reduce((s,q) => s + getScore(q), 0);
-    return { ...a, score: raw / 4 };
+    return { ...a, score: raw / (2 * 100) };  // 2問×100点満点で正規化
   });
 
   const top = [...scores].sort((a,b) => b.score - a.score).slice(0,3);
 
-  const behaviorScores = {
-    '先延ばし': 0, '責任回避・責任転嫁': 0,
-    '過剰投資（評価されない努力の継続）': 0,
-    '情報隠蔽・報告減少': 0, '回避・様子見': 0
-  };
-  scores.forEach(a => {
-    const p = a.score;
-    if (a.id==='s4') behaviorScores['先延ばし'] += p;
-    if (a.id==='d1') behaviorScores['先延ばし'] += p;
-    if (a.id==='s3') behaviorScores['責任回避・責任転嫁'] += p;
-    if (a.id==='d2') behaviorScores['責任回避・責任転嫁'] += p;
-    if (a.id==='s2') behaviorScores['過剰投資（評価されない努力の継続）'] += p;
-    if (a.id==='s5') behaviorScores['過剰投資（評価されない努力の継続）'] += p;
-    if (a.id==='s6') behaviorScores['情報隠蔽・報告減少'] += p;
-    if (a.id==='s1') behaviorScores['回避・様子見'] += p;
-  });
-  const behavior = Object.entries(behaviorScores).sort((a,b) => b[1]-a[1])[0][0];
+  // スコアをidでアクセスしやすいMapに変換
+  const sc = {};
+  scores.forEach(a => { sc[a.id] = a.score; });
+  const HIGH = 0.5; // 50%以上を「高い」と判定
+  const LOW  = 0.3; // 30%未満を「低い」と判定
+
+  let behavior;
+  if (sc.d1 >= HIGH && sc.s2 >= HIGH) {
+    behavior = 'その場対応（応急処置型）';
+  } else if (sc.s4 >= HIGH) {
+    behavior = 'その場対応（先延ばし型）';
+  } else if (sc.s3 >= HIGH && sc.d2 >= HIGH) {
+    behavior = '責任回避';
+  } else if (sc.s2 >= HIGH && sc.s5 >= HIGH) {
+    behavior = '過剰適応';
+  } else if (sc.d1 >= HIGH && sc.d2 >= HIGH && sc.s2 < LOW) {
+    behavior = '短期判断';
+  } else if (sc.s6 >= HIGH && (sc.s1 >= HIGH || sc.s3 >= HIGH)) {
+    behavior = '関係離脱';
+  } else {
+    // どの条件にも合致しない場合は最高スコア軸から推定
+    const topId = scores.sort((a,b) => b.score - a.score)[0].id;
+    const fallback = {
+      s1:'関係離脱', s2:'過剰適応', s3:'責任回避',
+      s4:'その場対応（先延ばし型）', s5:'過剰適応',
+      s6:'関係離脱', d1:'その場対応（応急処置型）', d2:'責任回避'
+    };
+    behavior = fallback[topId] || 'その場対応（先延ばし型）';
+  }
 
   const avgScore = scores.reduce((sum,a) => sum + a.score, 0) / scores.length;
   const maxScore = Math.max(...scores.map(a => a.score));
@@ -396,28 +450,25 @@ function calcResult() {
   // 日付
   document.getElementById('report-date').textContent = new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric'});
 
-  // 軸カード
+  // 軸カード（ラベル＋力場を統合）
   const top3 = top.slice(0,3);
   const cardsHtml = '<div class="axis-cards">' + top3.map(a => `
     <div class="axis-card">
       <div class="axis-card-label">${axisText[a.id].label}</div>
-      <div class="axis-card-desc">${axisText[a.id].desc}</div>
+      <div class="axis-card-desc">${axisText[a.id].force}</div>
     </div>`).join('') + '</div>';
   document.getElementById('axis-cards').innerHTML = cardsHtml;
 
-  // 強制力ブロック
-  const forceLine = top3.map(a => a.force).join('<br>');
-  document.getElementById('force-block').innerHTML = `
-    <div class="force-block">
-      <div class="force-block-label">この構造が生む状態</div>
-      <div class="force-block-text">${forceLine}</div>
-    </div>`;
+  // 強制力ブロック（軸カードに統合済みのため非表示）
+  document.getElementById('force-block').innerHTML = '';
 
-  // 行動パターン
+  // 行動パターン＋説明文
+  const bDesc = behaviorText[behavior] || '';
   document.getElementById('behavior-block').innerHTML = `
     <div class="behavior-block">
       <div class="behavior-label">起きやすい行動パターン</div>
       <div class="behavior-text">「${behavior}」</div>
+      <div class="behavior-desc">${bDesc}</div>
     </div>`;
 
   // 注釈
@@ -459,7 +510,8 @@ function calcResult() {
       avgScore: Math.round(avgScore * 100),
       maxScore: Math.round(maxScore * 100),
       top1:top[0]?top[0].id:'', top2:top[1]?top[1].id:'', top3:top[2]?top[2].id:'',
-      outcome: behavior
+      outcome: behavior,
+      forceText: forceText
     })
   }).catch(err => console.warn('送信エラー:', err));
 }
