@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>職場構造スキャン</title>
+<title>組織構造スキャン</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: sans-serif; font-size: 13px; background: #f9f9f7; color: #1a1a18; padding: 20px; max-width: 680px; margin: 0 auto; }
@@ -71,7 +71,7 @@ h1 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
 
 <p class="sub-label">STRUCTURE SCAN</p>
 <h1>組織構造スキャン</h1>
-<p class="sub">この診断は「誰が悪いか」を特定するものではありません。職場全体でより良いパフォーマンスを実現するためのものです。事実ベースで答えてください。</p>
+<p class="sub">この診断は「誰が悪いか」ではなく「なぜこの構造が機能しないか」を特定します。事実ベースで答えてください。</p>
 
 <div class="axis s1">
   <div class="axis-head"><span class="axis-label">S1 意思決定構造</span><span class="force">強制力：決めてもコントロールできない構造</span></div>
@@ -346,26 +346,15 @@ const axisText = {
 };
 
 const behaviorText = {
-  'その場対応（応急処置型）': '時間的な余裕がなく、評価の基準も見えにくい状態では、考え抜く前に動くことが合理的になります。結果として、根本解決より目先の対処が繰り返されやすくなっています。',
-  'その場対応（先延ばし型）': '決めても無駄になる可能性がある状態では、動き出すタイミングを遅らせることが合理的になります。結果として、着手が後回しになる判断に戻りやすくなっています。',
+  '応急処置型その場対応': '時間的な余裕がなく、評価の基準も見えにくい状態では、考え抜く前に動くことが合理的になります。結果として、根本解決より目先の対処が繰り返されやすくなっています。',
+  '先延ばし型その場対応': '決めても無駄になる可能性がある状態では、動き出すタイミングを遅らせることが合理的になります。結果として、着手が後回しになる判断に戻りやすくなっています。',
   '責任回避': '動くほど責任を負わされ、損失も現場に集まりやすい状態では、関わらない方が合理的になります。結果として、確認してから動く・様子を見る判断に戻りやすくなっています。',
   '過剰適応': '何をしても評価が読めず、最適な行動が見えにくい状態では、周囲に合わせることが合理的になります。結果として、自分の判断より相手の期待に応える行動に戻りやすくなっています。',
   '短期判断': '時間圧力が強く、損失が自分に返りにくい状態では、長期的な影響より目先の結果を優先することが合理的になります。結果として、見切り発車の判断に戻りやすくなっています。',
   '関係離脱': '情報が届かず、誰が決めるかも不明確な状態では、関わり続けることが非合理になります。結果として、距離を置く・関与を減らす判断に戻りやすくなっています。',
 };
 
-function generateResultText(top, behavior) {
-  const top3 = top.slice(0, 3);
-  const labels = top3.map(a => `「${axisText[a.id].label}」`).join('、');
 
-  const items = top3.map(a => {
-    return `・${axisText[a.id].label}：${axisText[a.id].desc}`;
-  }).join('\n');
-
-  const forceLine = top3.map(a => a.force).join(' / ');
-
-  return `あなたはこの構造について、特に\n${labels}\nを「よくある」と感じています。\n\n${items}\n\nこの状態では、\n${forceLine}\nという圧力がかかっています。\n\nその結果、この環境では「${behavior}」が起きやすくなります。\n\nこの感覚は個人の問題ではなく、構造の中で自然に発生するものです。\n\n同じ組織内で複数人が同様の回答をした場合、この軸は構造的な問題として扱われます。`;
-}
 
 function allAnswered() {
   for (let i = 1; i <= 16; i++) {
@@ -395,9 +384,9 @@ function calcResult() {
 
   let behavior;
   if (sc.d1 >= HIGH && sc.s2 >= HIGH) {
-    behavior = 'その場対応（応急処置型）';
+    behavior = '応急処置型その場対応';
   } else if (sc.s4 >= HIGH) {
-    behavior = 'その場対応（先延ばし型）';
+    behavior = '先延ばし型その場対応';
   } else if (sc.s3 >= HIGH && sc.d2 >= HIGH) {
     behavior = '責任回避';
   } else if (sc.s2 >= HIGH && sc.s5 >= HIGH) {
@@ -411,10 +400,10 @@ function calcResult() {
     const topId = scores.sort((a,b) => b.score - a.score)[0].id;
     const fallback = {
       s1:'関係離脱', s2:'過剰適応', s3:'責任回避',
-      s4:'その場対応（先延ばし型）', s5:'過剰適応',
-      s6:'関係離脱', d1:'その場対応（応急処置型）', d2:'責任回避'
+      s4:'先延ばし型その場対応', s5:'過剰適応',
+      s6:'関係離脱', d1:'応急処置型その場対応', d2:'責任回避'
     };
-    behavior = fallback[topId] || 'その場対応（先延ばし型）';
+    behavior = fallback[topId] || '先延ばし型その場対応';
   }
 
   const avgScore = scores.reduce((sum,a) => sum + a.score, 0) / scores.length;
